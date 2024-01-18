@@ -1,12 +1,7 @@
 import java.util.*;
 import java.util.function.Function;
 
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
 class Solution {
-
 
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
@@ -44,40 +39,11 @@ class Solution {
             teleportMap.put(points.get(1), points.get(0));
         }
 
-        BendersState initial = new BendersState(startR, startC, teleportMap, map,destrObstacles);
+        BendersState initial = new BendersState(startR, startC, teleportMap, map, destrObstacles);
 
         BendersBrain bendersBrain = new BendersBrain(initial);
 
         bendersBrain.start();
-    }
-
-    static class Memory {
-        final BendersState prevState;
-        final BendersState nextState;
-
-        public Memory(BendersState prevState, BendersState nextState) {
-            this.prevState = prevState;
-            this.nextState = nextState;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null)
-                return false;
-            if (getClass() != o.getClass())
-                return false;
-            Memory memory = (Memory) o;
-            return prevState.equals(memory.prevState) &&
-                    nextState.equals(memory.nextState);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(prevState, nextState);
-        }
-
     }
 
     static class BendersBrain {
@@ -189,7 +155,7 @@ class Solution {
 
         public BendersState(int row, int column, boolean breakerMode, boolean inverted, boolean isAlive,
                             Direction direction, int priority, Map<Point, Point> teleportMap,
-                            char[][] map, LinkedList<String> steps,int destrObstacles) {
+                            char[][] map, LinkedList<String> steps, int destrObstacles) {
             this.row = row;
             this.column = column;
             this.breakerMode = breakerMode;
@@ -250,8 +216,9 @@ class Solution {
         public BendersState move() {
             steps.add(this.direction.toString());
             return new BendersState(getNextRow(), getNextColumn(),
-                    this.breakerMode, this.inverted, this.isAlive,
-                    this.direction, DEFAULT_PRIORITY, this.teleportMap, this.map, this.steps,this.destrObstacles);
+                                    this.breakerMode, this.inverted, this.isAlive,
+                                    this.direction, DEFAULT_PRIORITY, this.teleportMap, this.map, this.steps,
+                                    this.destrObstacles);
         }
 
         public BendersState teleport() {
@@ -260,35 +227,41 @@ class Solution {
             Point remote = teleportMap.get(currentLocation);
 
             return new BendersState(remote.row, remote.column,
-                    current.breakerMode, current.inverted, current.isAlive,
-                    current.direction, current.priority, current.teleportMap, current.map, current.steps,this.destrObstacles);
+                                    current.breakerMode, current.inverted, current.isAlive,
+                                    current.direction, current.priority, current.teleportMap, current.map,
+                                    current.steps, this.destrObstacles);
         }
 
         public BendersState bear() {
             BendersState current = move();
             return new BendersState(current.row, current.column,
-                    !current.breakerMode, current.inverted, current.isAlive,
-                    current.direction, current.priority, current.teleportMap, current.map, current.steps,this.destrObstacles);
+                                    !current.breakerMode, current.inverted, current.isAlive,
+                                    current.direction, current.priority, current.teleportMap, current.map,
+                                    current.steps, this.destrObstacles);
         }
 
         public BendersState invert() {
             BendersState current = move();
             return new BendersState(current.row, current.column,
-                    current.breakerMode, !current.inverted, current.isAlive,
-                    current.direction, current.priority, current.teleportMap, current.map, current.steps,this.destrObstacles);
+                                    current.breakerMode, !current.inverted, current.isAlive,
+                                    current.direction, current.priority, current.teleportMap, current.map,
+                                    current.steps, this.destrObstacles);
         }
 
         public BendersState turn() {
             Direction[] currentPriorities = inverted ? INVERTED_PRIORITIES : PRIORITIES;
             Direction currentDirectionByPriority = currentPriorities[this.priority];
 
-            Direction nextDirection = this.direction.equals(currentDirectionByPriority) ? currentPriorities[(this.priority + 1) % 4] : currentDirectionByPriority;
-            int nextPriority = this.direction.equals(currentDirectionByPriority) ? this.priority : (this.priority + 1) % 4;
+            Direction nextDirection = this.direction.equals(
+                    currentDirectionByPriority) ? currentPriorities[(this.priority + 1) % 4] : currentDirectionByPriority;
+            int nextPriority = this.direction.equals(
+                    currentDirectionByPriority) ? this.priority : (this.priority + 1) % 4;
 
 
             return new BendersState(this.row, this.column,
-                    this.breakerMode, this.inverted, this.isAlive,
-                    nextDirection, nextPriority, this.teleportMap, this.map, this.steps,this.destrObstacles);
+                                    this.breakerMode, this.inverted, this.isAlive,
+                                    nextDirection, nextPriority, this.teleportMap, this.map, this.steps,
+                                    this.destrObstacles);
         }
 
         public BendersState breakObstacle() {
@@ -321,8 +294,9 @@ class Solution {
         public BendersState die() {
             BendersState current = move();
             return new BendersState(current.row, current.column,
-                    current.breakerMode, current.inverted, false,
-                    current.direction, current.priority, current.teleportMap, current.map, current.steps,this.destrObstacles);
+                                    current.breakerMode, current.inverted, false,
+                                    current.direction, current.priority, current.teleportMap, current.map,
+                                    current.steps, this.destrObstacles);
         }
 
         private BendersState changeDirection(char dir) {
@@ -334,8 +308,9 @@ class Solution {
             if (dir == 'E') nextDirection = Direction.EAST;
 
             return new BendersState(current.row, current.column,
-                    current.breakerMode, current.inverted, current.isAlive,
-                    nextDirection, current.priority, current.teleportMap, current.map, current.steps,this.destrObstacles);
+                                    current.breakerMode, current.inverted, current.isAlive,
+                                    nextDirection, current.priority, current.teleportMap, current.map, current.steps,
+                                    this.destrObstacles);
 
         }
 
@@ -367,7 +342,7 @@ class Solution {
 
         @Override
         public int hashCode() {
-            return Objects.hash(row, column, breakerMode, inverted, isAlive, direction, priority,destrObstacles);
+            return Objects.hash(row, column, breakerMode, inverted, isAlive, direction, priority, destrObstacles);
         }
 
 
