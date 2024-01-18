@@ -1,5 +1,4 @@
 rootProject.name = 'coding-game'
-include 'add-binary'
 include 'bender-episode-1'
 include 'bender-episode-2'
 include 'bender-episode-3'
