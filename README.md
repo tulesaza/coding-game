@@ -9,5 +9,5 @@
 - **Bender - Episode 3:** [Solution](bender-episode-3), [Task](https://www.codingame.com/training/hard/bender-episode-3)
 - **Vox Code - Episode 1:**[Solution](vox-codei-1), [Task](https://www.codingame.com/training/hard/vox-codei-episode-1)
 ## Very Hard:
-- **Shadows of the Knight - Episode 2: ** [Solution](shadows-of-the-knight-episode-2), [Task](https://www.codingame.com/training/expert/shadows-of-the-knight-episode-2)
+- **Shadows of the Knight - Episode 2:** [Solution](shadows-of-the-knight-episode-2), [Task](https://www.codingame.com/training/expert/shadows-of-the-knight-episode-2)
 
