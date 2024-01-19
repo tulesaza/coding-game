@@ -10,4 +10,4 @@
 - **Vox Code - Episode 1:**[Solution](vox-codei-1), [Task](https://www.codingame.com/training/hard/vox-codei-episode-1)
 ## Very Hard:
 - **Shadows of the Knight - Episode 2:** [Solution](shadows-of-the-knight-episode-2), [Task](https://www.codingame.com/training/expert/shadows-of-the-knight-episode-2)
-
+- **The Resistance:** [Solution](the-resistance), [Task](https://www.codingame.com/training/expert/the-resistance)
